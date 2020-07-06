@@ -8,12 +8,12 @@ bl_info = {
 
 import sys
 from os.path import dirname, realpath
-from registrator import register_all_classes, unregister_all_classes
-import reloader
 
 dir_path = dirname(realpath(__file__))
 sys.path.append(dir_path)
 
+import reloader
+from registrator import register_all_classes, unregister_all_classes
 def register():
     reloader.reload_all_modules()
     register_all_classes()

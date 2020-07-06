@@ -1,5 +1,6 @@
 import bpy
 from base_classes.registrable import Registrable
+from operators.selector import Selector
 
 class EqualMeshesPanel(bpy.types.Panel, Registrable):
     bl_idname = 'EM_UI_PANEL'
@@ -11,4 +12,8 @@ class EqualMeshesPanel(bpy.types.Panel, Registrable):
     def draw(self, context):
         layout = self.layout
         row = layout.row()
-        row.label(text='sample text', icon='MESH_CUBE')
+        row.operator(Selector.bl_idname)
+
+    @classmethod
+    def poll(cls, context):
+        return bpy.context.mode == 'OBJECT'
