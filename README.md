@@ -8,7 +8,7 @@ Just download the source files as a Zip file, and install from within Blender's 
 # Supported features (so far)
 Selection of meshes equal in shape to the active selected mesh.  
 Limitations of this feature:
-* Right now, this only works if the meshes being compared has **the same vertex ordering** (this tends to be the case), so, keep that in mind. Adding support for point matching will fix this and is the next priority, but it may take some time since it's not a trivial task.
+* Right now, this only works if the meshes being compared have **the same vertex ordering** (this tends to be the case), so, keep that in mind. Adding support for point matching will fix this and is the next priority, but it may take some time since it's not a trivial task.
 * Currently, meshes are treated as point clouds, so, meshes that share the same shape, but don't share the same set of polygons will be trated as equal. This, however, is very rare, and should not matter.
 
 # Usage
