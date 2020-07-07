@@ -13,4 +13,4 @@ Just download the source files as a Zip file, and install from within Blender's 
 
 # Usage
 Right now, after installing the addon, a menu entry gets added to the 'Select' menu in the 3D view, when in object mode. You can perform the selection via that menu entry, or you can use the default shortcut keyboard SHIFT+E, or set your own in the preferences menu.
-![alt text](https://github.com/nachgsanchez/equalmeshes/blob/master/images/menu_entry?raw=true)
+![alt text](https://github.com/nachgsanchez/equalmeshes/blob/master/images/menu_entry.png?raw=true)
