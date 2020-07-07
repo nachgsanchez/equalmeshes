@@ -6,10 +6,10 @@ Although it is at a very early stage, and the set of features intended to be add
 Just download the source files as a Zip file, and install from within Blender's preferences menu. Enable the addon, and voilá.
 
 # Supported features (so far)
-Selection of meshes equal in shape to the active selected mesh.  
-Limitations of this feature:
-* Right now, this only works if the meshes being compared have **the same vertex ordering** (this tends to be the case), so, keep that in mind. Adding support for point matching will fix this and is the next priority, but it may take some time since it's not a trivial task.
-* Currently, meshes are treated as point clouds, so, meshes that share the same shape, but don't share the same set of polygons will be trated as equal. This, however, is very rare, and should not matter.
+* Selection of meshes equal in shape to the active selected mesh.  
+&nbsp;&nbsp;&nbsp;&nbsp;Limitations of this feature:
+&nbsp;&nbsp;&nbsp;&nbsp;* Right now, this only works if the meshes being compared have **the same vertex ordering** (this tends to be the case), so, keep that in mind. Adding support for point matching will fix this and is the next priority, but it may take some time since it's not a trivial task.
+&nbsp;&nbsp;&nbsp;&nbsp;* Currently, meshes are treated as point clouds, so, meshes that share the same shape, but don't share the same set of polygons will be trated as equal. This, however, is very rare, and should not matter.
 
 # Usage
 Right now, after installing the addon, a menu entry gets added to the 'Select' menu in the 3D view, when in object mode. You can perform the selection via that menu entry, or you can use the default shortcut keyboard SHIFT+E, or set your own in the preferences menu.
