@@ -1,17 +1,51 @@
 import bpy
 from base_classes.registrable import Registrable
+from core.solver import Solver
+
+import mathutils
+
+import time
+
+#The menu draw function for the class
+#Still not sure if there's a way to incorporate it into the class body
+def menu_draw(self, context):
+    self.layout.operator(Selector.bl_idname)
 
 class Selector(bpy.types.Operator, Registrable):
-    bl_idname = "em_select.equal"
+    bl_idname = "select.select_equal"
     bl_label = "Select Equal Meshes"
     bl_options = {'REGISTER', 'UNDO'}
+    treshold = 0.001
 
     def execute(self, context):
-        selected_objects = bpy.context.view_layer.objects.selected.items()
-        if (len(selected_objects) == 0):
-            self.report({'WARNING'}, 'There is currently no selected object.')
-        if (len(selected_objects) > 1):
-            self.report({'WARNING'}, 'Multiple selections are currently not supported.')
-        
+        if (bpy.context.mode != 'OBJECT'):
+            return {'FINISHED'}
+
         active_obj = bpy.context.view_layer.objects.active
-        return {'FINISHED'} 
+        
+        #We check that the scene status is valid 
+        if active_obj is None or not active_obj.select_get():
+            self.report({'WARNING'}, 'There is no (active) selected object in the scene.')
+            return {'FINISHED'}
+        if active_obj.type != 'MESH':
+            self.report({'WARNING'}, 'Active object is not a mesh object.')
+            return {'FINISHED'}
+
+        for obj in bpy.context.view_layer.objects:
+            if obj.type != 'MESH' or obj == active_obj:
+                continue
+            if len(obj.data.vertices) == len(active_obj.data.vertices):
+                solver = Solver(obj, active_obj, Selector.treshold)
+                equal = solver.solve()
+                if equal:
+                    obj.select_set(True)
+        return {'FINISHED'}
+    
+    @classmethod
+    def register(cls):
+        bpy.types.VIEW3D_MT_select_object.append(menu_draw)
+
+    @classmethod
+    def unregister(cls):
+        bpy.types.VIEW3D_MT_select_object.remove(menu_draw)
+    

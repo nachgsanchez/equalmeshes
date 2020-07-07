@@ -27,7 +27,7 @@ class DepsGraph:
     def __init__(self, classes):
 
         #Naming seems weird here, because you expect the root to be part of the graph,
-        #but, you should think of the instance of the DepsGraph class as the actual graph,
+        #but you should think of the instance of the DepsGraph class as the actual graph,
         #these are just variable names. 
         self.root = self.Node.RootNode()
         self.graph = {}
