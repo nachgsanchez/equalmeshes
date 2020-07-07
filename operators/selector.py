@@ -13,6 +13,7 @@ def menu_draw(self, context):
 class Selector(bpy.types.Operator, Registrable):
     bl_idname = "select.select_equal"
     bl_label = "Select Equal Meshes"
+    bl_description = "Selects all meshes equal to the active selected geometry"
     bl_options = {'REGISTER', 'UNDO'}
 
     #Treshold is hardcoded for now
