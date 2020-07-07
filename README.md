@@ -18,4 +18,4 @@ Right now, after installing the addon, a menu entry gets added to the 'Select' m
 # Sources
 Works that helped implement this software so far:
   * **B.K.P Horn**, Closed Form Solution of Absolute Orientation Using Unit Quaternions
-  * **Besl, A Method** for Registration of 3D Shapes
+  * **Besl**, A Method for Registration of 3D Shapes
