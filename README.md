@@ -9,8 +9,7 @@ Just download the source files as a Zip file, and install from within Blender's 
 * Selection of all meshes equal in shape (exactly the same geometry) to the active selected mesh. It does not matter wether object transforms were applied or not.  
   Limitations of this feature:
   * Right now, this only works if the meshes being compared have **the same vertex ordering** (this tends to be the case), so, keep that in mind. Adding support for point matching will fix this and is the next priority, but it may take some time since it's not a trivial task.
-  * Currently, meshes are treated as point clouds, so, meshes that share the same set of vertices, but don't share the same set of polygons will be trated as equal. This, however, is very rare, and should not matter.
-
+  * Currently, meshes are treated as point clouds, so, meshes that share the same set of vertices, but don't share the same set of polygons will be trated as equal. This, however, is very rare, and should not get in the way of basic selection functionality. It may or may not be changed in the future.
 # Usage
 Right now, after installing the addon, a menu entry gets added to the 'Select' menu in the 3D view, when in object mode. You can perform the selection via that menu entry, or you can use the default shortcut keyboard SHIFT+E, or set your own in the preferences menu.
   
