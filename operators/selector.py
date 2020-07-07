@@ -7,7 +7,6 @@ import mathutils
 import time
 
 #The menu draw function for the class
-#Still not sure if there's a way to incorporate it into the class body
 def menu_draw(self, context):
     self.layout.operator(Selector.bl_idname)
 
@@ -15,6 +14,8 @@ class Selector(bpy.types.Operator, Registrable):
     bl_idname = "select.select_equal"
     bl_label = "Select Equal Meshes"
     bl_options = {'REGISTER', 'UNDO'}
+
+    #Treshold is hardcoded for now
     treshold = 0.001
 
     def execute(self, context):
