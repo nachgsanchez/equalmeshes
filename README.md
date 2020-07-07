@@ -1,4 +1,4 @@
-# Equal Meshes
+# :hammer: Equal Meshes
 Equal meshes is a blender addon intended to provide useful tools when dealing with sets of unorganized meshes that are equal in shape.
 Although it is at a very early stage, and the set of features intended to be added in the future is quite large, the little that it can do right now seemed to be useful enough to share the code as it is. Moreover, what it brings to the table is still not heavily tested (and will probably be implemented differently in the future), so use with caution.
 
@@ -13,3 +13,4 @@ Just download the source files as a Zip file, and install from within Blender's 
 
 # Usage
 Right now, after installing the addon, a menu entry gets added to the 'Select' menu in the 3D view, when in object mode. You can perform the selection via that menu entry, or you can use the default shortcut keyboard SHIFT+E, or set your own in the preferences menu.
+![alt text](https://github.com/nachgsanchez/equalmeshes/blob/master/menu_entry?raw=true)
