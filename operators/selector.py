@@ -37,8 +37,10 @@ class Selector(bpy.types.Operator, Registrable):
             if obj.type != 'MESH' or obj == active_obj:
                 continue
             if len(obj.data.vertices) == len(active_obj.data.vertices):
+                start_time = time.time()
                 solver = Solver(obj, active_obj, Selector.treshold)
                 equal = solver.solve()
+                print('Solver took: {}'.format(time.time() - start_time))
                 if equal:
                     obj.select_set(True)
         return {'FINISHED'}
