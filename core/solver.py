@@ -7,7 +7,7 @@ import core.utils.conversions as conv
 import bpy
 
 #Main solver for rigid transforms
-#NumPy's utilities and data structures are preferred. However, there are some functions things from
+#NumPy's utilities and data structures are preferred. However, there are some functions from
 #Mathutils that prove to be useful, mainly conversions.
 #There is still much room for perfomance improvements
 class Solver:
