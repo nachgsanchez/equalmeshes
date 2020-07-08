@@ -42,6 +42,3 @@ def _list_modules(modulenames, path, module_path):
             _list_modules(modulenames, path.joinpath(modulename), module_path + modulename)
         else:
             modulenames.append(module_path + modulename)
-
-
-    
