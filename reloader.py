@@ -3,7 +3,6 @@ from pathlib import Path
 from inspect import isclass, ismodule
 import importlib
 import sys
-from inspect import ismodule
 
 #This is useful for module reloading when using the 'Reload Scripts' option inside Blender
 #It is not pretty, and I'm not sure if there's a much better way to handle it completely automatically

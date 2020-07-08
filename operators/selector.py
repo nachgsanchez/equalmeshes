@@ -22,7 +22,7 @@ class Selector(bpy.types.Operator, Registrable):
     def execute(self, context):
         if (bpy.context.mode != 'OBJECT'):
             return {'FINISHED'}
-
+            
         active_obj = bpy.context.view_layer.objects.active
         
         #We check that the scene status is valid 
