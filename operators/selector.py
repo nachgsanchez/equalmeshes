@@ -1,6 +1,7 @@
 import bpy
 from base_classes.registrable import Registrable
 from core.solver import Solver
+from core.simple_solver import SimpleSolver
 
 import mathutils
 
@@ -37,8 +38,8 @@ class Selector(bpy.types.Operator, Registrable):
             if obj.type != 'MESH' or obj == active_obj:
                 continue
             if len(obj.data.vertices) == len(active_obj.data.vertices):
-                solver = Solver(obj, active_obj, Selector.treshold)
-                equal = solver.solve()
+                s_solver = SimpleSolver(obj, active_obj, Selector.treshold)
+                equal = s_solver.Solve()
                 if equal:
                     obj.select_set(True)
         return {'FINISHED'}

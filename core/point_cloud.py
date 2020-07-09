@@ -12,5 +12,6 @@ class PointCloud:
         self.abs_points = self.wm.dot(np.array([conv.Vector3D_4D(v.co) for v in obj.data.vertices]).T).T
 
         #centroid is just the average of those points, and rel_points are the points relative to the centroid
+        #This would make more sense in the Solver (would also allow one single PointCloud class), needs to be moved
         self.centroid = np.mean(self.abs_points, axis=0)
         self.rel_points = self.abs_points - self.centroid
