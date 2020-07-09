@@ -4,8 +4,6 @@ import random
 from core.simple_point_cloud import SimplePointCloud
 import core.utils.conversions as conv
 
-import time
-
 class SimpleSolver:
     def __init__(self, obj_from, obj_to, treshold):
         self.treshold = treshold
