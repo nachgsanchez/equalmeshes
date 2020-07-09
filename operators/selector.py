@@ -1,10 +1,10 @@
 import bpy
 from base_classes.registrable import Registrable
 from core.solver import Solver
+from core.simple_solver import SimpleSolver
 
+import math
 import mathutils
-
-import time
 
 #The menu draw function for the class
 def menu_draw(self, context):
@@ -32,15 +32,23 @@ class Selector(bpy.types.Operator, Registrable):
         if active_obj.type != 'MESH':
             self.report({'WARNING'}, 'Active object is not a mesh object.')
             return {'FINISHED'}
+        if len(active_obj.data.vertices) < 3:
+            self.report({'WARNING'}, 'Active object must have 3 or more vertices.')
+            return {'FINISHED'}
 
-        for obj in bpy.context.view_layer.objects:
+        obj_count = len(bpy.context.view_layer.objects)
+        wm = bpy.context.window_manager
+        wm.progress_begin(0, 99)
+        for idx, obj in enumerate(bpy.context.view_layer.objects):
             if obj.type != 'MESH' or obj == active_obj:
                 continue
             if len(obj.data.vertices) == len(active_obj.data.vertices):
-                solver = Solver(obj, active_obj, Selector.treshold)
-                equal = solver.solve()
+                s_solver = SimpleSolver(obj, active_obj, Selector.treshold)
+                equal = s_solver.Solve()
                 if equal:
                     obj.select_set(True)
+            wm.progress_update(math.ceil(100 * (idx / obj_count)))
+        wm.progress_end()
         return {'FINISHED'}
     
     @classmethod
