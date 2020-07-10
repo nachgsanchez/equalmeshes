@@ -92,6 +92,6 @@ class Selector(bpy.types.Operator, Registrable):
         bpy.types.VIEW3D_MT_select_object.remove(menu_draw)
 
         #We remove shortcuts
-        for km, i in keymaps:
+        for km, i in cls.keymaps:
             km.keymap_items.remove(i)
     
