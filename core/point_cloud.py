@@ -1,6 +1,11 @@
-import bpy
+#Util imports
 import numpy as np
-import core.utils.conversions as conv
+
+#Blender imports
+import bpy
+
+#Project imports
+from em.core.utils import conversions as conv
 
 #Class to represent meshes as objects
 class PointCloud:

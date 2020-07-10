@@ -1,8 +1,13 @@
-import numpy as np
-import mathutils
+#Util imports
 import random
-from core.simple_point_cloud import SimplePointCloud
-import core.utils.conversions as conv
+import numpy as np
+
+#Blender imports
+import mathutils
+
+#Project imports
+from em.core.utils import conversions as conv
+from em.core.simple_point_cloud import SimplePointCloud
 
 class SimpleSolver:
     def __init__(self, obj_from, obj_to, treshold):

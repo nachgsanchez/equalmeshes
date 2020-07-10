@@ -6,35 +6,26 @@ bl_info = {
     'category': 'Mesh'
 }
 
+#Util imports
 import sys
-from os.path import dirname, realpath
 
-dir_path = dirname(realpath(__file__))
-sys.path.append(dir_path)
+#Alias for 'equalmeshes' or whatever the name of the root folder
+root_module_name = 'em'
+sys.modules[root_module_name] = sys.modules[__name__]
 
+#Blender imports
 import bpy
 
-import reloader
-from registrator import register_all_classes, unregister_all_classes
-from operators.selector import Selector
-
-keymaps = []
+#Project imports
+from em.reloader import reload_all_modules
+from em.registrator import register_all_classes, unregister_all_classes
 
 def register():
-    reloader.reload_all_modules()
+    reload_all_modules()
     register_all_classes()
-
-    #We register shortcuts here (for now)
-    wm = bpy.context.window_manager
-    km = wm.keyconfigs.addon.keymaps.new(name='3D View', space_type='VIEW_3D')
-    kmi = km.keymap_items.new(Selector.bl_idname, type='E', value='PRESS', shift=True)
-    keymaps.append((km, kmi))
 
 def unregister():
     unregister_all_classes()
-    for km, i in keymaps:
-        km.keymap_items.remove(i)
-    keymaps.clear()
 
 if __name__ == '__main__':
     register()

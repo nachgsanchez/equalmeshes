@@ -1,16 +1,20 @@
+#Util imports
+import sys
+import importlib
 from pkgutil import iter_modules
 from pathlib import Path
 from inspect import isclass, ismodule
-import importlib
-import sys
+
+#Project imports
+from em import root_module_name
 
 #This is useful for module reloading when using the 'Reload Scripts' option inside Blender
 #It is not pretty, and I'm not sure if there's a much better way to handle it completely automatically
 def reload_all_modules():
     root_dir = Path(__file__).parent
     modulenames = []
-    _list_modules(modulenames, root_dir, '')
-    _reload_all_modules(modulenames, root_dir, '')
+    _list_modules(modulenames, root_dir, root_module_name)
+    _reload_all_modules(modulenames, root_dir, root_module_name)
 
 def _reload_all_modules(modulenames, path, module_path):
     if module_path:
