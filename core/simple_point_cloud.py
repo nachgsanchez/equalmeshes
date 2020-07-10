@@ -1,6 +1,11 @@
+#Util imports
 import numpy as np
+
+#Blender imports
 import mathutils
-import core.utils.conversions as conv
+
+#Project imports
+from em.core.utils import conversions as conv
 
 class SimplePointCloud:
     def __init__(self, obj):

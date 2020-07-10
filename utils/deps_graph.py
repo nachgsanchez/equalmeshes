@@ -1,4 +1,5 @@
-from base_classes.registrable import Registrable
+#Project imports
+from em.base_classes.registrable import Registrable
 
 #As things are right now, this is kind of overkill,
 #but I wanted to make sure that the code was easily expandable

@@ -1,10 +1,13 @@
+#Util imports
+import numpy as np
+
+#Blender imports
 import bpy
 import mathutils
-import numpy as np
-from core.point_cloud import PointCloud
-import core.utils.conversions as conv
 
-import bpy
+#Project imports
+from em.core.utils import conversions as conv
+from em.core.point_cloud import PointCloud
 
 #Main solver for rigid transforms
 #NumPy's utilities and data structures are preferred. However, there are some functions from
