@@ -1,5 +1,6 @@
 #Util imports
 import random
+import math
 import numpy as np
 
 #Blender imports
@@ -65,6 +66,9 @@ class SimpleSolver:
         transformed = transform.dot(self.cloud_from.abs_points.T).T
 
         #We test against the treshold
-        mean_distance = np.mean(np.linalg.norm(transformed - self.cloud_to.abs_points, axis=1))
-        return mean_distance < self.treshold
+        max_distance = np.max(np.linalg.norm(transformed - self.cloud_to.abs_points, axis=1))
+
+        #Ugliest hack ever, but will stay like this until other more important things are implemented
+        #This is to compensate for floating point error
+        return max_distance < self.treshold * max(self.cloud_to.max_dim, self.cloud_from.max_dim) ** (2 / 3)
         

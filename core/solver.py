@@ -15,9 +15,6 @@ from em.core.point_cloud import PointCloud
 #There is still much room for perfomance improvements
 class Solver:
     def __init__(self, obj_from, obj_to, treshold):
-        #Mean of distances between each point pair is used to test
-        #against treshold. It's pretty unamazing, and once other features are added, it
-        #won't work, but for now it will do.
         self.treshold = treshold
 
         #PointCloud representations of the objects to be compared
@@ -36,6 +33,8 @@ class Solver:
         transformed = transform.dot(self.cloud_from.abs_points.T).T
 
         #We test against the treshold
+        #This doesn't really work, but this solver is not being used
+        #TODO change it
         mean_distance = np.mean(np.linalg.norm(transformed - self.cloud_to.abs_points, axis=1))
         return mean_distance < self.treshold
 
