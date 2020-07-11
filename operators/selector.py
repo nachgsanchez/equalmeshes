@@ -24,7 +24,7 @@ class Selector(bpy.types.Operator, Registrable):
     keymaps = None
 
     #Treshold is hardcoded for now
-    treshold = 0.0001
+    treshold = 0.01
 
     def execute(self, context):
         if (bpy.context.mode != 'OBJECT'):

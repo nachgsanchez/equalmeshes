@@ -19,7 +19,7 @@ class SimpleSolver:
     def Solve(self):
         #We gather three random samples from each cloud
         idxs = random.sample(range(len(self.cloud_from.abs_points)), 3)
-        
+
         f_1 = self.cloud_from.abs_points[idxs[0]][:3]
         f_2 = self.cloud_from.abs_points[idxs[1]][:3]
         f_3 = self.cloud_from.abs_points[idxs[2]][:3]
@@ -48,7 +48,7 @@ class SimpleSolver:
         y_t /= np.linalg.norm(y_t)
         z_t = np.cross(x_t, y_t)
 
-        #===Coordinate systems===
+        #========================
 
         m_f = np.vstack([x_f, y_f, z_f])
         m_t = np.vstack([x_t, y_t, z_t]).T
@@ -70,5 +70,4 @@ class SimpleSolver:
 
         #Ugliest hack ever, but will stay like this until other more important things are implemented
         #This is to compensate for floating point error
-        return max_distance < self.treshold * max(self.cloud_to.max_dim, self.cloud_from.max_dim) ** (2 / 3)
-        
+        return max_distance < self.treshold

@@ -14,5 +14,3 @@ class SimplePointCloud:
         #These are the absolute positions of the mesh's vertices (as you see them in the viewport), so,
         #with object transforms 'applied'
         self.abs_points = self.wm.dot(np.array([conv.Vector3D_4D(v.co) for v in obj.data.vertices]).T).T
-
-        self.max_dim = np.max(obj.dimensions)
