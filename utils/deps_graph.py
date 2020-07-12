@@ -81,4 +81,3 @@ class DepsGraph:
             result.append(class_node.cls)
         
         return result
-

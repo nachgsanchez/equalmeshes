@@ -14,9 +14,7 @@ from em.core.point_cloud import PointCloud
 #Mathutils that prove to be useful, mainly conversions.
 #There is still much room for perfomance improvements
 class Solver:
-    def __init__(self, obj_from, obj_to, treshold):
-        self.treshold = treshold
-
+    def __init__(self, obj_from, obj_to):
         #PointCloud representations of the objects to be compared
         self.cloud_from = PointCloud(obj_from)
         self.cloud_to = PointCloud(obj_to)
@@ -32,12 +30,8 @@ class Solver:
         #These are the transformed absolute points of the 'from mesh' based on 'transform'
         transformed = transform.dot(self.cloud_from.abs_points.T).T
 
-        #We test against the treshold
-        #This doesn't really work, but this solver is not being used
-        #TODO change it
-        mean_distance = np.mean(np.linalg.norm(transformed - self.cloud_to.abs_points, axis=1))
-        return mean_distance < self.treshold
-
+        max_distance = np.max(np.linalg.norm(transformed - self.cloud_to.abs_points, axis=1))
+        return mean_distance
 
     def solve_scale(self):
         num = np.sum(np.square(self.cloud_to.rel_points))

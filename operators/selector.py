@@ -10,6 +10,12 @@ from em.base_classes.registrable import Registrable
 from em.core.solver import Solver
 from em.core.simple_solver import SimpleSolver
 
+#This is to make the treshold property able to go up to infinity.
+#There's no real reason for this, and seems a bit ridiculous, specially
+#since we usually look for close distances, but there's also no real reason
+#why it should have a specific bound.
+MAX_FLOAT_VALUE = 1.7976931348623157e+308
+
 #The menu draw function for the class
 def menu_draw(self, context):
     self.layout.operator(Selector.bl_idname)
@@ -19,14 +25,27 @@ class Selector(bpy.types.Operator, Registrable):
     bl_label = "Select Equal Meshes"
     bl_description = "Selects all meshes equal to the active selected geometry"
     bl_options = {'REGISTER', 'UNDO'}
-
+    
     #Will be used to store keyboard shortcuts
     keymaps = None
+    
+    #=== Operator Properties ===
+    #Treshold is set by user and it's available in the redo panel
+    treshold = bpy.props.FloatProperty(name="Distance Treshold", default=0.001, min=0, max=MAX_FLOAT_VALUE)
+    #===========================
 
-    #Treshold is hardcoded for now
-    treshold = 0.01
+    def invoke(self, context, event):
+        #Here, we'll store a dictionary with all meshes compared to the subject mesh
+        #and their respective max_distance. This is to prevent redo calls to make calls
+        #to the solver
+        self.compared_meshes = {}
+        return self.execute(context)
 
     def execute(self, context):
+        if self.compared_meshes:
+            self.update_selection()
+            return {'FINISHED'}
+
         if (bpy.context.mode != 'OBJECT'):
             return {'FINISHED'}
             
@@ -64,17 +83,25 @@ class Selector(bpy.types.Operator, Registrable):
                 continue
             
             if len(obj.data.vertices) == len(active_obj.data.vertices):
-                s_solver = SimpleSolver(obj, active_obj, Selector.treshold)
-                equal = s_solver.Solve()
+                #We use the simple solver for now
+                ssolver = SimpleSolver(obj, active_obj)
+                max_distance = ssolver.Solve()
                 
-                if equal:
+                if max_distance < self.treshold:
                     obj.select_set(True)
             
+                #We save the mesh and its respective max distance
+                self.compared_meshes[obj.name] = max_distance
+
             #Update progress
             wm.progress_update(math.ceil(100 * (idx / obj_count)))
         
         wm.progress_end()
         return {'FINISHED'}
+
+    def update_selection(self):
+        for obj in self.compared_meshes.items():
+            bpy.context.view_layer.objects[obj[0]].select_set(obj[1] < self.treshold)
     
     @classmethod
     def register(cls):
