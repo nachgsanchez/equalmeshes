@@ -11,8 +11,7 @@ from em.core.utils import conversions as conv
 from em.core.simple_point_cloud import SimplePointCloud
 
 class SimpleSolver:
-    def __init__(self, obj_from, obj_to, treshold):
-        self.treshold = treshold
+    def __init__(self, obj_from, obj_to):
         self.cloud_from = SimplePointCloud(obj_from)
         self.cloud_to = SimplePointCloud(obj_to)
 
@@ -65,9 +64,7 @@ class SimpleSolver:
         #These are the transformed absolute points of the 'from mesh' based on 'transform'
         transformed = transform.dot(self.cloud_from.abs_points.T).T
 
-        #We test against the treshold
+        #Maximum of distances after aligning
         max_distance = np.max(np.linalg.norm(transformed - self.cloud_to.abs_points, axis=1))
 
-        #Ugliest hack ever, but will stay like this until other more important things are implemented
-        #This is to compensate for floating point error
-        return max_distance < self.treshold
+        return max_distance
