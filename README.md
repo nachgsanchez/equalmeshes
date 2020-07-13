@@ -15,7 +15,7 @@ Right now, after installing the addon, a menu entry gets added to the 'Select' m
 
 ![alt text](https://github.com/nachgsanchez/equalmeshes/blob/master/images/menu_entry.png?raw=true)
   
-After selection, a redo panel is displayed at the bottom left of the 3D Viewport, along with a 'Distance Treshold' property that the user can modify. This treshold  is used to specify the maximum distance that there can be between pairs of corresponding vertices after alignment. Small values might have to be used when working on very small scale scenes (since, say, the default value of 0.001 might actually be a big relative difference at such scales). Bigger values will accept meshes that are less and less equal to the one being compared, and will help with issues with floating point precision (mostly in big scale scenes).
+After selection, a redo panel is displayed at the bottom left of the 3D Viewport, along with a 'Distance Treshold' property that the user can modify. This treshold  is used to specify the maximum distance that there can be between pairs of corresponding vertices after alignment. Small values might have to be used when working on very small scale scenes (since, say, the default value of 0.001 might actually be a big relative difference at such scales). Bigger values will accept meshes that are less and less equal to the one being compared, and will help with issues with floating point precision (mostly when working at big scales).
 
 # Sources
 Works that helped implement this software so far:
